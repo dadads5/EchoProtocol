@@ -1,0 +1,154 @@
+{
+  "name": "Level 3 - 回声回廊 / Echo Loop",
+  "loopSeconds": 40.0,
+  "spawn": [-570, 0],
+  "bounds": {
+    "min": [-660, -650],
+    "max": [630, 650]
+  },
+  "exit": {
+    "center": [170, 0],
+    "size": [70, 120]
+  },
+  "rooms": [
+    {
+      "id": "spawn_tube",
+      "label": "出生通道",
+      "center": [-405, 0],
+      "size": [900, 140],
+      "color": [0.16, 0.13, 0.20, 1.0]
+    },
+    {
+      "id": "fork_channel",
+      "label": "岔口竖道",
+      "center": [-80, 0],
+      "size": [140, 940],
+      "color": [0.10, 0.16, 0.22, 1.0]
+    },
+    {
+      "id": "top_lane",
+      "label": "下环廊",
+      "center": [210, 400],
+      "size": [720, 140],
+      "color": [0.12, 0.18, 0.15, 1.0]
+    },
+    {
+      "id": "bottom_lane",
+      "label": "上环廊",
+      "center": [210, -400],
+      "size": [720, 140],
+      "color": [0.12, 0.18, 0.15, 1.0]
+    },
+    {
+      "id": "right_corridor",
+      "label": "右侧长廊",
+      "center": [495, 0],
+      "size": [150, 1240],
+      "color": [0.10, 0.16, 0.22, 1.0]
+    },
+    {
+      "id": "core_chamber",
+      "label": "中央核心舱",
+      "center": [205, 0],
+      "size": [370, 600],
+      "color": [0.16, 0.12, 0.20, 1.0]
+    },
+    {
+      "id": "pocket_up",
+      "label": "右下死角",
+      "center": [495, 545],
+      "size": [150, 150],
+      "color": [0.14, 0.10, 0.10, 1.0]
+    },
+    {
+      "id": "pocket_down",
+      "label": "右上死角",
+      "center": [495, -545],
+      "size": [150, 150],
+      "color": [0.10, 0.14, 0.12, 1.0]
+    }
+  ],
+  "walls": [
+    { "id": "wall_top", "center": [-15, 650], "size": [1290, 60] },
+    { "id": "wall_bottom", "center": [-15, -650], "size": [1290, 60] },
+    { "id": "wall_left", "center": [-660, 0], "size": [60, 1360] },
+    { "id": "wall_right", "center": [600, 0], "size": [60, 1360] },
+
+    { "id": "tube_top", "center": [-405, 85], "size": [450, 30] },
+    { "id": "tube_bottom", "center": [-405, -85], "size": [450, 30] },
+
+    { "id": "elbow_top", "center": [-165, 270], "size": [30, 400] },
+    { "id": "elbow_bottom", "center": [-165, -270], "size": [30, 400] },
+
+    { "id": "big_top", "center": [120, 485], "size": [600, 30] },
+    { "id": "big_bottom", "center": [120, -485], "size": [600, 30] },
+
+    { "id": "inner_left", "center": [5, 0], "size": [30, 660] },
+    { "id": "inner_top", "center": [205, 315], "size": [370, 30] },
+    { "id": "inner_bottom", "center": [205, -315], "size": [370, 30] },
+    { "id": "inner_right_up", "center": [405, 215], "size": [30, 230] },
+    { "id": "inner_right_low", "center": [405, -215], "size": [30, 230] }
+  ],
+  "traps": [
+    { "id": 1, "label": "电弧", "center": [150, 400], "size": [46, 46] },
+    { "id": 2, "label": "腐蚀", "center": [60, -400], "size": [46, 46] },
+    { "id": 3, "label": "电弧", "center": [495, 150], "size": [46, 46] },
+    { "id": 4, "label": "腐蚀", "center": [495, -440], "size": [46, 46] }
+  ],
+  "items": [
+    {
+      "id": "core_l3",
+      "kind": "datacore",
+      "label": "数据核心 K3-V",
+      "payload": "K3-V",
+      "center": [-405, -280],
+      "size": [36, 36]
+    },
+    {
+      "id": "core_decoy",
+      "kind": "datacore",
+      "label": "数据核心 K3-X",
+      "payload": "K3-X",
+      "center": [-405, 280],
+      "size": [36, 36]
+    }
+  ],
+  "doors": [
+    {
+      "id": "gate_chamber",
+      "label": "核心舱闸门",
+      "requires": "K3-V",
+      "center": [405, 0],
+      "size": [30, 200]
+    }
+  ],
+  "enemies": [
+    {
+      "id": 1,
+      "label": "巡逻兵 α",
+      "patrol": [[-80, 400], [350, 400]],
+      "speed": 65.0,
+      "vision": 300.0,
+      "alertSpeed": 130.0,
+      "attackRange": 34.0
+    },
+    {
+      "id": 2,
+      "label": "巡逻兵 β",
+      "patrol": [[-80, -400], [350, -400]],
+      "speed": 60.0,
+      "vision": 260.0,
+      "alertSpeed": 125.0,
+      "attackRange": 34.0
+    },
+    {
+      "id": 4,
+      "label": "巡逻兵 δ",
+      "patrol": [[495, -250], [495, 250]],
+      "speed": 55.0,
+      "vision": 200.0,
+      "alertSpeed": 120.0,
+      "attackRange": 34.0
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "name": "Level 1 - 回声中继站 / Echo Relay",
+  "loopSeconds": 28.0,
+  "spawn": [-1500, 0],
+  "bounds": {
+    "min": [-1650, -230],
+    "max": [1150, 230]
+  },
+  "exit": {
+    "center": [1080, 0],
+    "size": [60, 220]
+  },
+  "rooms": [
+    {
+      "id": "airlock",
+      "label": "气闸",
+      "center": [-1475, 0],
+      "size": [330, 500],
+      "color": [0.10, 0.16, 0.22, 1.0]
+    },
+    {
+      "id": "corridor",
+      "label": "走廊",
+      "center": [-300, 0],
+      "size": [1560, 500],
+      "color": [0.13, 0.14, 0.19, 1.0]
+    },
+    {
+      "id": "escape_bay",
+      "label": "逃生舱",
+      "center": [880, 0],
+      "size": [560, 500],
+      "color": [0.14, 0.17, 0.15, 1.0]
+    }
+  ],
+  "walls": [
+    { "id": "wall_top", "center": [-250, -265], "size": [2900, 70] },
+    { "id": "wall_bottom", "center": [-250, 265], "size": [2900, 70] },
+    { "id": "wall_left", "center": [-1700, 0], "size": [100, 600] },
+    { "id": "wall_right", "center": [1200, 0], "size": [100, 600] }
+  ],
+  "traps": [
+    { "id": 1, "label": "腐蚀", "center": [-620, 0], "size": [46, 46] },
+    { "id": 2, "label": "电弧", "center": [-490, -90], "size": [46, 46] },
+    { "id": 3, "label": "电弧", "center": [-360, 90], "size": [46, 46] },
+    { "id": 4, "label": "腐蚀", "center": [-230, -90], "size": [46, 46] },
+    { "id": 5, "label": "电弧", "center": [-100, 90], "size": [46, 46] },
+    { "id": 6, "label": "腐蚀", "center": [30, 0], "size": [46, 46] },
+    { "id": 7, "label": "电弧", "center": [700, -110], "size": [46, 46] },
+    { "id": 8, "label": "腐蚀", "center": [900, 110], "size": [46, 46] }
+  ],
+  "items": [
+    {
+      "id": "core_ax7",
+      "kind": "datacore",
+      "label": "数据核心 AX-7",
+      "payload": "AX-7",
+      "center": [-1180, 0],
+      "size": [36, 36]
+    },
+    {
+      "id": "core_q9t",
+      "kind": "datacore",
+      "label": "数据核心 Q9-T",
+      "payload": "Q9-T",
+      "center": [180, -120],
+      "size": [36, 36]
+    },
+    {
+      "id": "core_zz00",
+      "kind": "datacore",
+      "label": "数据核心 ZZ-00",
+      "payload": "ZZ-00",
+      "center": [180, 120],
+      "size": [36, 36]
+    }
+  ],
+  "doors": [
+    {
+      "id": "gate_a",
+      "label": "舱门 A",
+      "requires": "AX-7",
+      "center": [-820, 0],
+      "size": [40, 460]
+    },
+    {
+      "id": "gate_b",
+      "label": "舱门 B",
+      "requires": "Q9-T",
+      "center": [520, 0],
+      "size": [40, 460]
+    }
+  ],
+  "enemies": [
+    {
+      "id": 1,
+      "label": "巡逻兵 α",
+      "patrol": [[-450, 40], [150, 40]],
+      "speed": 90.0,
+      "vision": 240.0,
+      "alertSpeed": 190.0,
+      "attackRange": 34.0
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+# VS / CMake 生成产物
+.vs/
+out/
+build/
+
+# CMake 缓存
+CMakeCache.txt
+CMakeFiles/
+*.cmake.user
+
+# 运行时存档（游戏写盘的 Meta 层数据）
+profile.json
+
+# 操作系统
+Thumbs.db
+Desktop.ini
+.DS_Store

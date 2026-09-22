@@ -1,0 +1,110 @@
+{
+  "name": "Level 4 - 回声之门 / Echo Gate",
+  "loopSeconds": 90.0,
+  "spawn": [-355, 0],
+  "bounds": {
+    "min": [-410, -335],
+    "max": [410, 335]
+  },
+  "viewScale": 0.7,
+  "exit": {
+    "center": [-330, -180],
+    "size": [60, 44]
+  },
+  "rooms": [
+    { "id": "f_room",    "label": "F 密室",    "center": [-170, 242.5], "size": [180, 185],  "color": [0.16, 0.13, 0.20, 1.0] },
+    { "id": "atrium",    "label": "传送大厅",  "center": [-107.5, 242.5], "size": [245, 185], "color": [0.10, 0.16, 0.22, 1.0] },
+    { "id": "tr_room",   "label": "右下房",    "center": [115, 242.5],  "size": [180, 185],  "color": [0.14, 0.12, 0.18, 1.0] },
+    { "id": "hall",      "label": "左中大厅",  "center": [-167.5, 27.5], "size": [425, 295], "color": [0.12, 0.14, 0.19, 1.0] },
+    { "id": "mid_room",  "label": "右中房",    "center": [115, -27.5],  "size": [180, 295],  "color": [0.10, 0.16, 0.22, 1.0] },
+    { "id": "far_right", "label": "最右区",    "center": [217.5, -92.5], "size": [185, 485], "color": [0.12, 0.15, 0.20, 1.0] },
+    { "id": "bl_room",   "label": "左上房",    "center": [-267.5, -240], "size": [285, 190], "color": [0.15, 0.13, 0.19, 1.0] },
+    { "id": "corridor",  "label": "传送走廊",  "center": [-105, -240],  "size": [140, 190],  "color": [0.10, 0.16, 0.22, 1.0] },
+    { "id": "bm_room",   "label": "上中房",    "center": [115, -240],   "size": [180, 190],  "color": [0.14, 0.13, 0.17, 1.0] }
+  ],
+  "walls": [
+    { "id": "wall_top",     "center": [0, 345],      "size": [840, 20] },
+    { "id": "wall_bottom",  "center": [0, -345],     "size": [840, 20] },
+    { "id": "wall_left",    "center": [-420, 0],     "size": [20, 710] },
+    { "id": "wall_right",   "center": [420, 0],      "size": [20, 710] },
+
+    { "id": "v_f_room",     "center": [-230, 242.5], "size": [20, 185] },
+    { "id": "h_top_left",   "center": [-272.5, 150], "size": [275, 20] },
+    { "id": "center_wall",  "center": [15, 0],       "size": [20, 670] },
+    { "id": "v_tr_room",    "center": [205, 242.5],  "size": [20, 185] },
+    { "id": "h_top_right",  "center": [207.5, 150],  "size": [405, 20] },
+
+    { "id": "h_bot_left",   "center": [-272.5, -145], "size": [275, 20] },
+    { "id": "h_bot_mid",    "center": [110, -145],   "size": [220, 20] },
+    { "id": "v_bot_right",  "center": [205, -240],   "size": [20, 190] },
+
+    { "id": "nook_wall",    "center": [-275, -240],  "size": [20, 190] }
+  ],
+  "traps": [
+    { "id": 1, "label": "电弧", "center": [-55, -240], "size": [46, 46] },
+    { "id": 2, "label": "腐蚀", "center": [-145, -80], "size": [46, 46] },
+    { "id": 3, "label": "电弧", "center": [280, 15],   "size": [46, 46] },
+    { "id": 4, "label": "腐蚀", "center": [-65, 200],  "size": [46, 46] }
+  ],
+  "items": [
+    {
+      "id": "key_purple",
+      "kind": "datacore",
+      "label": "紫钥匙 K4-P",
+      "payload": "K4-P",
+      "center": [-330, 205],
+      "size": [36, 36],
+      "color": [0.48, 0.35, 0.92, 1.0]
+    },
+    {
+      "id": "key_yellow",
+      "kind": "datacore",
+      "label": "黄钥匙 K4-Y",
+      "payload": "K4-Y",
+      "center": [70, -235],
+      "size": [36, 36],
+      "color": [0.95, 0.78, 0.20, 1.0]
+    }
+  ],
+  "doors": [
+    {
+      "id": "gate_purple",
+      "label": "紫门",
+      "requires": "K4-P",
+      "center": [-135, -240],
+      "size": [20, 210],
+      "color": [0.48, 0.35, 0.92, 1.0]
+    },
+    {
+      "id": "gate_yellow",
+      "label": "黄门",
+      "requires": "K4-Y",
+      "center": [215, 2.5],
+      "size": [20, 295],
+      "color": [0.95, 0.78, 0.20, 1.0]
+    }
+  ],
+  "teleporters": [
+    { "id": "tp_a1", "group": "A", "label": "A", "center": [-165, 245],  "size": [46, 36] },
+    { "id": "tp_a2", "group": "A", "label": "A", "center": [155, 250],   "size": [46, 36] },
+    { "id": "tp_f1", "group": "F", "label": "F", "center": [-330, 310],  "size": [46, 36] },
+    { "id": "tp_f2", "group": "F", "label": "F", "center": [60, 250],    "size": [46, 36] },
+    { "id": "tp_b1", "group": "B", "label": "B", "center": [-25, 15],    "size": [46, 36] },
+    { "id": "tp_b2", "group": "B", "label": "B", "center": [55, 15],     "size": [46, 36] },
+    { "id": "tp_c1", "group": "C", "label": "C", "center": [-215, -220], "size": [46, 36] },
+    { "id": "tp_c2", "group": "C", "label": "C", "center": [165, -235],  "size": [46, 36] },
+    { "id": "tp_d1", "group": "D", "label": "D", "center": [355, 15],    "size": [46, 36] },
+    { "id": "tp_d2", "group": "D", "label": "D", "center": [-340, -300], "size": [46, 36] }
+  ],
+  "enemies": [
+    {
+      "id": 1,
+      "label": "巡逻兵 α",
+      "patrol": [[115, 100], [115, -100]],
+      "speed": 65.0,
+      "vision": 240.0,
+      "alertSpeed": 130.0,
+      "attackRange": 34.0
+    }
+  ]
+}

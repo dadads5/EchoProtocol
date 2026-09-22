@@ -19,6 +19,11 @@
 #include <SDL2/SDL.h>
 #include <glad/glad.h>
 
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#include <windows.h>
+
 #include <algorithm>
 #include <cmath>
 #include <cstdio>
@@ -209,8 +214,12 @@ static void fatalBox(const char* title, const std::string& msg) {
     SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, title, msg.c_str(), nullptr);
 }
 
-int main(int argc, char* argv[]) {
-    (void)argc; (void)argv;
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
+                   LPSTR lpCmdLine, int nCmdShow) {
+    (void)hInstance; (void)hPrevInstance; (void)lpCmdLine; (void)nCmdShow;
+
+    // SDL_MAIN_HANDLED 模式下，我们自己接管入口，需显式告知 SDL 主已就绪
+    SDL_SetMainReady();
 
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         std::cerr << "SDL_Init failed: " << SDL_GetError() << std::endl;

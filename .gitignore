@@ -10,6 +10,13 @@ CMakeFiles/
 
 # 运行时存档（游戏写盘的 Meta 层数据）
 profile.json
+profile_level*.json
+
+# 预编译发布包：源码进 git，可直接玩的可执行包走 GitHub Releases
+# （dist/ 与 *.zip 含 exe/DLL，体积大且每次重编都变，不进版本库）
+dist/
+EchoProtocol-Release.zip
+build_release.bat
 
 # 操作系统
 Thumbs.db

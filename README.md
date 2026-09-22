@@ -2,7 +2,7 @@
 
 时间循环 + 信息永久积累的策略游戏（作品集项目，C++ / SDL2 / OpenGL 3.3 / ECS）。
 
-> 设计文档见 `E:/wb_data/游戏demo/EchoProtocol_GDD_v2.md`（与本项目分离存放）。
+> 设计文档（GDD）与本工程分离维护，不在本仓库内。
 
 ## 当前进度：M6 垂直切片 ✅（真 ECS + 专业 HUD/暂停菜单 + 第二关/选关菜单 + 着色器资源化 + 敌兵 AI + 视线遮挡 + A* 寻路 + 音效）
 
@@ -45,9 +45,7 @@
   - `QUIT` 退出程序；通关定格时按 ESC 仍是直接退出。
 - **单测补强**：`restartKeepMeta` 行为被钉死（Run 重置 + Meta 保留，对照 `wipeProfile` 清空），共 **138 断言 / 14 用例全过**。
 
-> 中文 HUD + 暂停菜单预览：`E:/wb_data/游戏demo/EchoProtocol_暂停菜单预览.html`（含 循环/死亡、密码/陷阱、最佳 卡与「已暂停」菜单）
-> 选关菜单预览：`E:/wb_data/游戏demo/EchoProtocol_选关菜单预览.html`（中文选关 + 每关进度）
-> 关卡布局预览：`E:/wb_data/游戏demo/EchoProtocol_关卡布局.html`（俯视地图，一眼看穿路线）
+> 设计期预览（HUD / 暂停菜单 / 选关菜单 / 关卡布局）为本地 HTML 原型，未随仓库发布。
 
 ### M3 真 ECS 重构 ✅
 
@@ -81,7 +79,7 @@
 - **修复**：通关定格时 `R`「再跑一次」此前在键盘上没生效（只有程序内 `replayAfterEscape()` 接口能用），现补上 `R`/`F5` 在通关态也响应。
 - **单测新增 2 用例**：`level02.json` 结构 + 诱饵不变量；`loadLevel` 切关后记忆隔离（切到 B 关记忆清零、切回 A 关从各自存档还原）。共 **158 断言 / 16 用例全过**。
 
-> 选关菜单预览：`E:/wb_data/游戏demo/EchoProtocol_选关菜单预览.html`
+> 选关菜单预览见本地 HTML 原型（未随仓库发布）。
 
 ### M3 着色器抽资源文件 ✅
 
@@ -115,7 +113,7 @@ M4 给时间循环世界加上**主动威胁**——巡逻机器人，让世界�
 - **单测新增 7 用例**（`tests/test_enemy.cpp`）：解析 / 巡逻移动 / 视野发现 / 接触致死事件 / 重置归位 / 被杀记忆+落盘 / 真实关卡含敌兵。共 **217 断言 / 23 用例全过**。
 - **契约不变**：`MetaState` 新字段用 `j.contains()` 守卫读取，旧存档与旧测试零影响；ECS 世界不在每轮重建的坑由 `resetEnemies` 显式复位补齐。
 
-> 三态预览：`E:/wb_data/游戏demo/EchoProtocol_敌兵AI预览.html`（巡逻 / 追击 / 记忆路线）
+> 三态预览见本地 HTML 原型（未随仓库发布）。
 
 ### M5 敌兵增强（视线遮挡 + A* 寻路）✅
 
@@ -145,27 +143,38 @@ GDD Milestone 5 的「打磨」项之一——给游戏接上音效，但**不�
 - **单测新增 3 用例**（`tests/test_audio.cpp`）：每个 `Sfx` 产出非空 / 时长合理 / 样本有界（不逐样本断言）；
   同一（纯正弦）`Sfx` 合成可复现；不同 `Sfx` 时长不同。共 **339 断言 / 34 用例全过**（旧 31 用例一字未改）。
 
-> 三态预览：`E:/wb_data/游戏demo/EchoProtocol_M5_敌兵增强预览.html`（视线遮挡 / A\* 绕墙 / 条件门）
+> 三态预览见本地 HTML 原型（未随仓库发布）。
 
 ## 构建步骤
 
-依赖已就绪（vcpkg 位于 `D:/vcp/vcpkg`，GLAD 已生成入库）。换机器时按下列步骤重建：
+本项目依赖 vcpkg 管理（`sdl2` `glm` `nlohmann-json` `catch2`），GLAD 已生成并入库，构建无网络依赖。
 
-1. 安装 vcpkg 并接入 `vcpkg integrate install`
+1. 安装并集成 vcpkg：克隆 `https://github.com/microsoft/vcpkg` 后执行 `vcpkg/bootstrap-vcpkg`，
+   本机再 `vcpkg integrate install`
 2. 安装依赖：`vcpkg install sdl2 glm nlohmann-json catch2 --triplet x64-windows`
-3. 用 VS2022 **“打开本地文件夹”** 选择本目录（含 `CMakeLists.txt`），选 `x64-Debug`，Ctrl+F5 运行。
+3. 用 VS2022 **“打开本地文件夹”** 选择本目录（含 `CMakeLists.txt`），选 `x64-Debug`，Ctrl+F5 运行；
+   或自行用 CMake 配置（`-DCMAKE_TOOLCHAIN_FILE=<你的 vcpkg>/scripts/buildsystems/vcpkg.cmake`）。
 
-> CMake 通过 `CMakePresets.json` 中显式指定的
-> `CMAKE_TOOLCHAIN_FILE = D:/vcp/vcpkg/scripts/buildsystems/vcpkg.cmake` 找到 vcpkg 库；
-> 若 vcpkg 换了位置，改这一处即可。
+> ⚠️ `CMakePresets.json` 里写死的 `CMAKE_TOOLCHAIN_FILE = D:/vcp/vcpkg/...` 是作者机器的绝对路径，
+> 换机器编译前请改成你本地的 vcpkg 路径（或改用环境变量 / 命令行参数传入），否则配置阶段找不到 vcpkg。
+
+## 平台与直接试玩
+
+- **平台**：当前仅支持 **Windows 10/11**（SDL2 + OpenGL 3.3 Core + MSVC 工具链）；macOS / Linux 暂未验证。
+- **不想编译、直接玩**：到本仓库 **Releases** 页下载 `EchoProtocol-Release.zip`，解压到任意目录
+  （**支持中文目录名**）后双击 `EchoProtocol.exe` 即可，无需安装 Visual Studio 或运行库
+  （所需 DLL 已随包附带）。源码不随 git 提交二进制，发布包统一走 Releases 分发。
 
 ## 已踩坑（已修复，记录备查）
 
 - **中文注释需 `/utf-8`**：MSVC 默认按系统代码页(936/GBK)读源文件，UTF-8 中文注释会触发 C4819 并把后续代码解析乱掉。
   `CMakeLists.txt` 已对 MSVC 加 `add_compile_options(/utf-8)`。
-- **入口用 `SDL_MAIN_HANDLED`**：`src/main.cpp` 顶部 `#define SDL_MAIN_HANDLED` 让 `int main()` 直接作为入口，
-  跳过 SDL2 在 Windows 上的 WinMain 桥接（否则链接需额外处理子系统入口 /SUBSYSTEM:WINDOWS）。
+- **Windows 下为 GUI 程序（无控制台黑框）**：`EchoProtocol` 目标在 CMake 里设了 `WIN32_EXECUTABLE TRUE`，
+  `src/main.cpp` 入口改为 `WinMain`（配合 `#define SDL_MAIN_HANDLED` + `SDL_SetMainReady()`），
+  双击 exe 不再弹出终端黑框。单元测试 `EchoProtocolTests` 保持控制台程序不变。
   因此 `CMakeLists.txt` 只链接 `SDL2::SDL2`，不链 `SDL2::SDL2main`。
+- **Release 发布包不显示控制台**：打包用的 Release 构建是 GUI 子系统，启动信息（OpenGL 版本、关卡加载等）
+  不会打印到可见控制台；如需排错，请用 Debug/控制台构建，或依赖已内置的 `fatalBox()` 启动错误弹窗。
 - **`project()` 必须启用 C 语言**：GLAD 是 C 源文件（`glad.c`），若写成
   `project(EchoProtocol LANGUAGES CXX)` 只启用 C++，CMake 会报
   `CMake can not determine linker language for target: glad`（配置阶段直接失败）。
@@ -194,6 +203,9 @@ GDD Milestone 5 的「打磨」项之一——给游戏接上音效，但**不�
 > 窗口拿到焦点会打印 `game window focused`，焦点被切走会清空按键并打印 `focus lost`，方便确认按键确实落在游戏窗口里。
 
 ## 验证清单（全中即 M3 完成）
+
+> 以下以**带控制台的 Debug 构建**为准（便于看日志）；**Release GUI 构建不打印控制台**，
+> 改用「窗口是否正常出现、能否加载关卡进入主菜单」来判定。
 
 **主程序（Ctrl+F5 实跑）：**
 - [ ] 控制台打印 `OpenGL 3.3 context ready`

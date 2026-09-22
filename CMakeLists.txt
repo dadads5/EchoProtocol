@@ -64,6 +64,12 @@ target_link_libraries(EchoProtocol PRIVATE
     SDL2::SDL2
     glad)
 
+# Windows 下作为 GUI 程序链接（/SUBSYSTEM:WINDOWS），双击 exe 不再弹出控制台黑框。
+# 仅作用于游戏本体；单元测试 EchoProtocolTests 仍需控制台，保持原样。
+if(WIN32)
+    set_target_properties(EchoProtocol PROPERTIES WIN32_EXECUTABLE TRUE)
+endif()
+
 # 关卡等数据资源拷到 exe 旁边，程序用 SDL_GetBasePath() 找它
 add_custom_command(TARGET EchoProtocol POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
